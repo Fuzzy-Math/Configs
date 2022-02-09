@@ -1,0 +1,15 @@
+[submodule ".config/nvim/pack/plugins/start/vim-go"]
+	path = .config/nvim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule ".config/nvim/pack/plugins/opt/deep-space-theme"]
+	path = .config/nvim/pack/plugins/opt/deep-space-theme
+	url = https://github.com/tyrannicaltoucan/vim-deep-space.git
+[submodule ".config/nvim/pack/plugins/opt/material-theme"]
+	path = .config/nvim/pack/plugins/opt/material-theme
+	url = https://github.com/kaicataldo/material.vim.git
+[submodule ".config/nvim/pack/plugins/start/lightline"]
+	path = .config/nvim/pack/plugins/start/lightline
+	url = https://github.com/itchyny/lightline.vim
+[submodule ".config/nvim/pack/plugins/start/challenger-deep-theme"]
+	path = .config/nvim/pack/plugins/start/challenger-deep-theme
+	url = https://github.com/challenger-deep-theme/vim.git

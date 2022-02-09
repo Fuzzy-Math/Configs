@@ -1,0 +1,86 @@
+# Challenger-Deep Theme
+colors:
+  # Default colors
+  primary:
+    background: '0x1b182c'
+    foreground: '0xcbe3e7'
+
+  # Normal colors
+  normal:
+    black:   '0x100e23'
+    red:     '0xff8080'
+    green:   '0x95ffa4'
+    yellow:  '0xffe9aa'
+    blue:    '0x91ddff'
+    magenta: '0xc991e1'
+    cyan:    '0xaaffe4'
+    white:   '0xcbe3e7'
+
+  # Bright colors
+  bright:
+    black:   '0x565575'
+    red:     '0xff5458'
+    green:   '0x62d196'
+    yellow:  '0xffb378'
+    blue:    '0x65b2ff'
+    magenta: '0x906cff'
+    cyan:    '0x63f2f1'
+    white:   '0xa6b3cc'
+#colors:
+#  primary:
+#    background: '#1c1c1c'
+#    #'#312d38'
+#    foreground: '#eff0eb'
+#  cursor:
+#    text: CellBackground
+#    cursor: '#ff6ac1'
+#  selection:
+#    text:  '#FF55FF'
+#    background: '#0d0c0e'
+#
+#  normal:
+#    black:   '#282a36'
+#    red:     '#e71903'
+#    green:   '#03e76c'
+#    yellow:  '#e7e303'
+#    blue:    '#036ee7'
+#    magenta: '#e7039c'
+#    cyan:    '#4fdefe'
+#    white:   '#f1f1f0'
+#
+#  bright:
+#    black:   '#545672'
+#    red:     '#ff2121'
+#    green:   '#12f45b'
+#    yellow:  '#fcfa53'
+#    blue:    '#53a3fc'
+#    magenta: '#fb53c4'
+#    cyan:    '#81faf5'
+#    white:   '#eff0eb'
+
+window_opacity: 0.8
+
+font:
+  normal:
+    family: Firacode 
+  bold:
+    family: Firacode 
+  size: 12
+
+window:
+  padding:
+    x: 10
+    y: 10 
+
+cursor:
+  style:
+    shape: Beam
+    
+env:
+  TERM: xterm-256color
+
+scrolling:
+  history: 4000
+  auto_scroll: true 
+
+draw_bold_text_with_bright_colors: true
