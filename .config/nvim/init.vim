@@ -9,6 +9,11 @@ if !has('gui_running')
    set t_Co=256
 endif
 
+if has('TMUX')
+   let &t_8f="<Esc>[38;2;%lu;%lu;%lum"
+   let &t_8b="<Esc>[48;2;%lu;%lu;%lum"
+endif
+
 let g:lightline = {'colorscheme': 'challenger_deep'}
 let g:challenger_deep_termcolors = 16
 set background=dark
