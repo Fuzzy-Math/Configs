@@ -13,3 +13,9 @@
 [submodule ".config/nvim/pack/plugins/start/challenger-deep-theme"]
 	path = .config/nvim/pack/plugins/start/challenger-deep-theme
 	url = https://github.com/challenger-deep-theme/vim.git
+[submodule ".config/tmux/plugins/tmux-resurrect"]
+	path = .config/tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule ".config/tmux/plugins/continuum"]
+	path = .config/tmux/plugins/continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git
