@@ -1,7 +1,7 @@
 #!/bin/sh
 # Read the river, riverctl, and rivertile man pages.
 
-background=$(fd . --type f -e jpg ~/src/Desktop/Wallpapers | shuf -n1)
+background=$(fd . --type f -e jpg ~/src/desktop/wallpapers | shuf -n1)
 
 riverctl spawn "bash $HOME/.config/river/process.sh $background &"
 
@@ -13,22 +13,22 @@ mod1="Mod1"
 riverctl map normal $mod Return spawn alacritty
 
 # Open rofi
-riverctl map normal $mod1 R spawn "rofi -show drun"
+riverctl map normal $mod Space spawn "rofi -show drun"
 
 # Open pcmanfm
-riverctl map normal $mod1 N spawn "thunar"
+riverctl map normal $mod N spawn "thunar"
 
 # Open pavucontrol
-riverctl map normal $mod1 P spawn "pavucontrol"
+riverctl map normal $mod P spawn "pavucontrol"
 
-# Open firefox
-riverctl map normal $mod1 B spawn "qutebrowser"
+# Open Qutebrowser
+riverctl map normal $mod B spawn "qutebrowser"
 
 # Open Chrome
-riverctl map normal $mod1 G spawn "google-chrome"
+riverctl map normal $mod G spawn "google-chrome"
 
 # Toggle waybar
-riverctl map normal $mod B spawn "killall -SIGUSR1 waybar"
+riverctl map normal $mod+Shift B spawn "killall -SIGUSR1 waybar"
 
 # Reload river configuration
 riverctl map normal $mod+Shift R spawn "~/.config/river/init"
@@ -46,7 +46,7 @@ riverctl map normal $mod Q close
 riverctl map normal $mod L spawn "swaylock -i $background"
 
 # Suspend
-#riverctl map normal $mod+Shift L spawn "systemctl suspend --now"
+riverctl map normal $mod+$mod1 L spawn "systemctl suspend --now"
 
 # Exit river
 riverctl map normal $mod+$mod1 R exit
@@ -156,11 +156,11 @@ do
     riverctl map $mode None XF86AudioMute         spawn 'volume.sh mute'
 
     # Control screen brightness (using backlight_control)
-    #riverctl map $mode None XF86MonBrightnessUp   spawn 'backlight_control +10'
-    #riverctl map $mode None XF86MonBrightnessDown spawn 'backlight_control  -10'
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'backlight_control +10'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'backlight_control  -10'
 
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightness.sh up'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'brightness.sh down'
+    #riverctl map $mode None XF86MonBrightnessUp   spawn 'brightness.sh up'
+    #riverctl map $mode None XF86MonBrightnessDown spawn 'brightness.sh down'
 done
 
 # Set background and border color
@@ -183,9 +183,9 @@ riverctl float-filter-add "firefox" float
 # config, but rivers default uses the first 9 tags.
 scratch_tag=$((1 << 20 ))
 # Toggle the scratchpad with Super+P
-riverctl map normal $mod P toggle-focused-tags ${scratch_tag}
+riverctl map normal $mod C toggle-focused-tags ${scratch_tag}
 # Send windows to the scratchpad with Super+Shift+P
-riverctl map normal $mod+Shift P set-view-tags ${scratch_tag}
+riverctl map normal $mod+Shift C set-view-tags ${scratch_tag}
 # Set spawn tagmask to ensure new windows don't have the scratchpad tag unless
 # explicitly set.
 all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
