@@ -27,6 +27,7 @@ test -z "$PROFILEREAD" && . /etc/profile || true
 
 export PATH=$PATH:/usr/local/go/bin
 export XDG_RUNTIME_DIR=/run/user/1000
+export TERM=alacritty
 
 if [[ "$(tty)" = "/dev/tty1" ]]; then
 	exec env XDG_CURRENT_DESKTOP=river dbus-run-session river
