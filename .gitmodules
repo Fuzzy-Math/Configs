@@ -19,3 +19,6 @@
 [submodule ".config/tmux/plugins/continuum"]
 	path = .config/tmux/plugins/continuum
 	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule ".config/nvim/pack/plugins/start/vim-obsession"]
+	path = .config/nvim/pack/plugins/start/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
