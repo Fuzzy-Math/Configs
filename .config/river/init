@@ -15,8 +15,12 @@ riverctl map normal $mod Return spawn alacritty
 # Open rofi
 riverctl map normal $mod Space spawn "rofi -show drun"
 
-# Open pcmanfm
+# Open thunar
 riverctl map normal $mod N spawn "thunar"
+
+# Open ranger
+riverctl map normal $mod+Shift F spawn "alacritty --class rangerfloat,rangerfloat --option window.dimensions.columns=125 window.dimensions.lines=25 --command ranger"
+riverctl map normal $mod F spawn "alacritty --command ranger"
 
 # Open pavucontrol
 riverctl map normal $mod P spawn "pavucontrol"
@@ -147,20 +151,12 @@ riverctl map normal $mod Left  send-layout-cmd rivertile "main-location left"
 for mode in normal locked
 do
     # Audio 
-    #riverctl map $mode None XF86AudioRaiseVolume  spawn 'pactl set-sink-volume @DEFAULT_SINK@ +5%'
-    #riverctl map $mode None XF86AudioLowerVolume  spawn 'pactl set-sink-volume @DEFAULT_SINK@ -5%'
-    #riverctl map $mode None XF86AudioMute         spawn 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer --allow-boost --set-limit 150 -i 5'
+    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
+    riverctl map $mode None XF86AudioMute         spawn 'pamixer -t'
 
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'volume.sh up'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'volume.sh down'
-    riverctl map $mode None XF86AudioMute         spawn 'volume.sh mute'
-
-    # Control screen brightness (using backlight_control)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'backlight_control +10'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'backlight_control  -10'
-
-    #riverctl map $mode None XF86MonBrightnessUp   spawn 'brightness.sh up'
-    #riverctl map $mode None XF86MonBrightnessDown spawn 'brightness.sh down'
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 10'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 10'
 done
 
 # Set background and border color
@@ -177,7 +173,10 @@ riverctl focus-follows-cursor normal
 
 # Make certain views start floating
 #riverctl float-filter-add app-id float
-riverctl float-filter-add "firefox" float
+riverctl float-filter-add app-id rangerfloat
+riverctl float-filter-add app-id pavucontrol
+riverctl float-filter-add app-id blueman-manager
+riverctl csd-filter-add app-id chrome
 
 # The scratchpad will live on an unused tag. Which tags are used depends on your
 # config, but rivers default uses the first 9 tags.
@@ -207,16 +206,7 @@ swayidle -w \
                 before-sleep 'swaylock -i $background -f -c 000000' \
 		#timeout 1200 'systemctl suspend'
 
-
-# usage: import-gsettings
-config="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini"
-if [ ! -f "$config" ]; then exit 1; fi
-gnome_schema="org.gnome.desktop.interface"
-gtk_theme="$(grep 'gtk-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-icon_theme="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-cursor_theme="$(grep 'gtk-cursor-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-font_name="$(grep 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"
-gsettings set "$gnome_schema" gtk-theme "$gtk_theme"
-gsettings set "$gnome_schema" icon-theme "$icon_theme"
-gsettings set "$gnome_schema" cursor-theme "$cursor_theme"
-gsettings set "$gnome_schema" font-name "$font_name"
+gsettings set org.gnome.desktop.default-applications.terminal exec alacritty.desktop
+riverctl spawn /lib/xdg-desktop-portal
+riverctl spawn /lib/xdg-desktop-portal-gtk
+riverctl spawn /lib/xdg-desktop-portal-wlr
