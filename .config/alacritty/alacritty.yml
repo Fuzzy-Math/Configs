@@ -58,8 +58,6 @@ colors:
 #    cyan:    '#81faf5'
 #    white:   '#eff0eb'
 
-window_opacity: 0.8
-
 font:
   normal:
     family: Firacode 
@@ -71,6 +69,7 @@ window:
   padding:
     x: 10
     y: 10 
+  opacity: 0.92
 
 cursor:
   style:
