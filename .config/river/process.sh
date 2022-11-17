@@ -19,14 +19,16 @@ wlr-randr --output ${wlroutputs[0]} --off \
 #	  --output "Samsung Electric Company LF27T850 H4ZN700370" --pos 3360,560
 killall polkit-gnome-authentication-agent-1
 /usr/libexec/polkit-gnome-authentication-agent-1 &
-killall dunst
-dunst &
+killall mako
+mako &
 killall blueman-applet
 blueman-applet &
 killall nm-applet
 nm-applet --indicator &
 killall waybar
 waybar &
+killall gammastep
+gammastep -m wayland -l 36:-83 -t 6500K:4000K -b 1.0:0.8 &
 
 killall swaybg; swaybg -i $1 -m fill &
 

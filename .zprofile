@@ -25,10 +25,11 @@ test -z "$PROFILEREAD" && . /etc/profile || true
 #fi
 . "$HOME/.cargo/env"
 
-export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/ccrane/go
+export PATH=$PATH:$HOME/.local/bin:$GOPATH/bin
 export XDG_RUNTIME_DIR=/run/user/1000
-export TERM=alacritty
 
 if [[ "$(tty)" = "/dev/tty1" ]]; then
+	/usr/libexec/xdg-desktop-portal-wlr &
 	exec env XDG_CURRENT_DESKTOP=river dbus-run-session river
 fi

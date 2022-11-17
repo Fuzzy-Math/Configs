@@ -19,9 +19,9 @@
 		"river/tags",
 	],
 
-	//"modules-center": [
-	//	"sway/window"
-	//],
+	"modules-center": [
+		"river/window"
+	],
 
 	"modules-right": [
 		"custom/arrow1",
@@ -35,9 +35,9 @@
 		"custom/arrow4",
 		"memory",
 		"custom/arrow5",
-		"temperature",
+		"custom/temperature_cpu",
 		"custom/arrow7",
-		"battery",
+		"custom/temperature_gpu",
 		"custom/arrow8",
 		"tray",
 		"clock#date",
@@ -128,21 +128,53 @@
 		"on-click": "pavucontrol"
 	},
 
-	"temperature": {
-		"critical-threshold": 90,
+	"custom/temperature_cpu": {
+		"exec": "expr $(cat /sys/class/hwmon/hwmon2/temp1_input) / 1000",
+		"format": "  {}°C",
 		"interval": 5,
-		"thermal-zone": 1,
-		//"format": "{icon} {temperatureC}°C",
-		"format": "{icon} {temperatureC}°C",
-		"format-icons": [
-			"", // Icon: temperature-empty
-			"", // Icon: temperature-quarter
-			"", // Icon: temperature-half
-			"", // Icon: temperature-three-quarters
-			""  // Icon: temperature-full
-		],
 		"tooltip": false
 	},
+
+	"custom/temperature_gpu": {
+		"exec": "expr $(cat /sys/class/hwmon/hwmon1/temp1_input) / 1000",
+		"format": "  {}°C",
+		"interval": 5,
+		"tooltip": false
+	},
+
+	//"temperature": {
+	//	"critical-threshold": 90,
+	//	"interval": 5,
+	//	"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+	//	//"thermal-zone": 2,
+	//	//"format": "{icon} {temperatureC}°C",
+	//	"format": " {icon} {temperatureC}°C",
+	//	"format-icons": [
+	//		"", // Icon: temperature-empty
+	//		"", // Icon: temperature-quarter
+	//		"", // Icon: temperature-half
+	//		"", // Icon: temperature-three-quarters
+	//		""  // Icon: temperature-full
+	//	],
+	//	"tooltip": false
+	//},
+
+	//"temperature": {
+	//	"critical-threshold": 90,
+	//	"interval": 5,
+	//	"hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
+	//	//"thermal-zone": 2,
+	//	//"format": "{icon} {temperatureC}°C",
+	//	"format": "{icon} {temperatureC}°C",
+	//	"format-icons": [
+	//		"", // Icon: temperature-empty
+	//		"", // Icon: temperature-quarter
+	//		"", // Icon: temperature-half
+	//		"", // Icon: temperature-three-quarters
+	//		""  // Icon: temperature-full
+	//	],
+	//	"tooltip": false
+	//},
 
 	"custom/alsa": {
 		"exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/ muted/p; s/.*\\[(.*%)\\].*/ \\1/p'",

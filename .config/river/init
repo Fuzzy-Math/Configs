@@ -2,6 +2,7 @@
 # Read the river, riverctl, and rivertile man pages.
 
 background=$(fd . --type f -e jpg ~/src/desktop/wallpapers | shuf -n1)
+#background="~/src/desktop/wallpapers/0061.jpg"
 
 riverctl spawn "bash $HOME/.config/river/process.sh $background &"
 
@@ -13,7 +14,7 @@ mod1="Mod1"
 riverctl map normal $mod Return spawn alacritty
 
 # Open rofi
-riverctl map normal $mod Space spawn "rofi -show drun"
+riverctl map normal $mod Space spawn "wofi --term=alacritty --show=run"
 
 # Open thunar
 riverctl map normal $mod N spawn "thunar"
@@ -23,13 +24,38 @@ riverctl map normal $mod+Shift F spawn "alacritty --class rangerfloat,rangerfloa
 riverctl map normal $mod F spawn "alacritty --command ranger"
 
 # Open pavucontrol
-riverctl map normal $mod P spawn "pavucontrol"
+riverctl map normal $mod P spawn "flatpak run org.pulseaudio.pavucontrol"
 
 # Open Qutebrowser
-riverctl map normal $mod B spawn "qutebrowser"
+riverctl map normal $mod B spawn "flatpak run org.qutebrowser.qutebrowser"
 
 # Open Chrome
-riverctl map normal $mod G spawn "google-chrome"
+riverctl map normal $mod G spawn "flatpak run com.google.Chrome"
+
+# Open Spotify
+riverctl map normal $mod Y spawn "flatpak run com.spotify.Client"
+
+# Open Pithos
+riverctl map normal $mod I spawn "flatpak run io.github.Pithos"
+
+# Open Steam
+#riverctl map normal $mod S spawn "flatpak run --env=WAYLAND_DISPLAY= com.valvesoftware.Steam"
+riverctl map normal $mod S spawn "env WAYLAND_DISPLAY= steam"
+
+# Open Discord
+riverctl map normal $mod D spawn "flatpak run --env=WAYLAND_DISPLAY= com.discordapp.Discord"
+
+# Open Flatseal
+riverctl map normal $mod O spawn "flatpak run com.github.tchx84.Flatseal"
+
+#Open Lutris
+riverctl map normal $mod U spawn "flatpak run net.lutris.Lutris"
+
+# Open Musikcube
+riverctl map normal $mod X spawn "alacritty --command musikcube"
+
+# Toggle gammastep
+riverctl map normal $mod R spawn "killall gammastep || gammastep -m wayland -l 36:-83 -t 6500K:4000K -b 1.0:0.8 &"
 
 # Toggle waybar
 riverctl map normal $mod+Shift B spawn "killall -SIGUSR1 waybar"
@@ -48,9 +74,6 @@ riverctl map normal $mod Q close
 
 # Lock the session
 riverctl map normal $mod L spawn "swaylock -i $background"
-
-# Suspend
-riverctl map normal $mod+$mod1 L spawn "systemctl suspend --now"
 
 # Exit river
 riverctl map normal $mod+$mod1 R exit
@@ -157,6 +180,12 @@ do
 
     riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 10'
     riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 10'
+
+    # Suspend
+    riverctl map $mode $mod+$mod1 L spawn "systemctl suspend --now"
+
+    # Cycle wallapers
+    #riverctl map $mode $mod+Shift W spawn "killall swaybg && swaybg -i $(fd . --type f -e jpg ~/src/desktop/wallpapers | shuf -n1) -m fill &"
 done
 
 # Set background and border color
@@ -181,9 +210,9 @@ riverctl csd-filter-add app-id chrome
 # The scratchpad will live on an unused tag. Which tags are used depends on your
 # config, but rivers default uses the first 9 tags.
 scratch_tag=$((1 << 20 ))
-# Toggle the scratchpad with Super+P
-riverctl map normal $mod C toggle-focused-tags ${scratch_tag}
-# Send windows to the scratchpad with Super+Shift+P
+# Toggle the scratchpad with Super+C
+riverctl map normal $mod C toggle-focused-tags ${scratch_tag} focus-view next
+# Send windows to the scratchpad with Super+Shift+C
 riverctl map normal $mod+Shift C set-view-tags ${scratch_tag}
 # Set spawn tagmask to ensure new windows don't have the scratchpad tag unless
 # explicitly set.
@@ -199,14 +228,13 @@ do
   riverctl input $pad tap enabled
 done
 
-swayidle -w \
-                timeout 300 'swaymsg "output * dpms off"' \
-                timeout 600 'swaylock -i $background -f -c 000000' \
-                     resume 'swaymsg "output * dpms on"' \
-                before-sleep 'swaylock -i $background -f -c 000000' \
+#swayidle -w \
+#                timeout 300 'swaymsg "output * dpms off"' \
+#                timeout 600 'swaylock -i $background -f -c 000000' \
+#                     resume 'swaymsg "output * dpms on"' \
+#                before-sleep 'swaylock -i $background -f -c 000000' \
 		#timeout 1200 'systemctl suspend'
 
 gsettings set org.gnome.desktop.default-applications.terminal exec alacritty.desktop
-riverctl spawn /lib/xdg-desktop-portal
-riverctl spawn /lib/xdg-desktop-portal-gtk
-riverctl spawn /lib/xdg-desktop-portal-wlr
+riverctl spawn usr/libexec/xdg-desktop-portal
+riverctl spawn usr/libexec/xdg-desktop-portal-wlr

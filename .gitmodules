@@ -25,3 +25,9 @@
 [submodule ".config/nvim/pack/plugins/start/vim-gutentags"]
 	path = .config/nvim/pack/plugins/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule ".config/nvim/pack/plugins/start/nvim-treesitter"]
+	path = .config/nvim/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule ".config/nvim/pack/plugins/start/nvim-lspconfig"]
+	path = .config/nvim/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git

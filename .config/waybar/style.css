@@ -88,7 +88,7 @@
 #waybar {
 	background: transparent;
 	color: @dark;
-	font-family: "Iosevka", "Font Awesome 5 Free";
+	font-family: "FiraCode", "Font Awesome 5 Free";
 	font-size: 15pt;
 	/*font-weight: bold;*/
 }
@@ -179,6 +179,19 @@
 	transition: none;
 }
 
+#window {
+	font-size: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	border-radius: 15px;
+	/*background: #1a1e25;*/
+	/*color: #D8DEE9;*/
+	background: @time;
+	color: @dark;
+}
+
 #tags button {
 	transition: none;
 	color: #D8DEE9;
@@ -217,10 +230,10 @@
     color: #bb9af7;
 }
 
-#window {
+/*#window {
 	margin-right: 40px;
 	margin-left: 40px;
-}
+}*/
 
 #custom-alsa,
 #pulseaudio,
@@ -244,8 +257,13 @@
 	color: @light;
 }
 
-#temperature {
+#custom-temperature_cpu {
 	background: @temp;
+	color: @dark;
+}
+
+#custom-temperature_gpu {
+	background: @battery;
 	color: @dark;
 }
 
